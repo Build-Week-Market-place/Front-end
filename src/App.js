@@ -3,13 +3,13 @@ import './App.css';
 import {useTransition, animated} from 'react-spring'
 import {Route, Switch} from 'react-router-dom'
 import {__RouterContext} from 'react-router'
-import Home from './page/Home'
-import SignForm from './page/SignForm';
-import Register from './page/register'
-import Users from './page/users'
-import Items from './page/items'
-import ItemEdit from './page/itemEdit'
-import Contact from './page/Contact'
+import Home from './Unit2Components/page/Home'
+import SignForm from './Unit2Components/page/SignForm';
+import Register from './Unit2Components/page/register'
+import Users from './Unit2Components/page/users'
+import Items from './Unit2Components/page/items'
+import ItemEdit from './Unit2Components/page/itemEdit'
+import Contact from './Unit2Components/page/Contact'
 
 function App() {
 

@@ -1,0 +1,14 @@
+
+
+
+@media(max-width:888px){
+    .form{
+        width:35vw;
+    }
+}
+
+@media(max-width:642px){
+    .form{
+        width:80vw;
+    }
+}

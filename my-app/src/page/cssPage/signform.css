@@ -1,0 +1,33 @@
+.signBody{
+    background-image: url('../../picture/background/bckg.jpg');
+    background-size: cover;
+    min-height: 100vh;
+    color:white;
+    font-family:  Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    overflow: hidden;
+    text-decoration: none;
+    position:absolute;
+    min-width: 100vw;
+}
+.signForm{
+    padding-top: 10vh;
+}
+h1{
+    font-family: 'Acme', sans-serif;
+}
+
+.form{
+    width:25%;
+    margin:10vh auto 9vh auto;
+    padding: 5vh 4vw;
+    background-color: rgba(0, 0, 0, 0.479);
+    border-radius: 15px;
+}
+.submitBtn{
+    color:white;
+    background-color: #fbb829;
+    margin:1vh
+}
+.incons ul{
+ margin: auto;
+}

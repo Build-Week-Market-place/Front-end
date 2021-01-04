@@ -1,0 +1,29 @@
+
+.itmBckg{
+    background-image: url('../../picture/background/market.jpg');
+}
+.itemList{
+    width:95vw;
+    margin:4vh auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.itemCard{
+    border-radius:10px;
+    width:15vw;
+    margin:2vh 2vw;
+    text-align: left;
+    padding:1vh 1vw
+
+}
+@media(max-width:888px){
+    .itemCard{
+        width:26vw;
+    }
+}
+@media(max-width:642px){
+    .itemCard{
+        width:55vw;
+    }
+}

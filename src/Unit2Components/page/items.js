@@ -2,6 +2,7 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './cssPage/items.css'
 import Header from './Header'
+import Footer from './footer'
 
 function  Items(){
         return(
@@ -21,10 +22,8 @@ function  Items(){
                         </div>
                             
                     </div>  
-                </div>
-
-
-
+                 <Footer/>
+            </div>
             </div>
                    
         

@@ -1,6 +1,7 @@
 import React from 'react'
 import './cssPage/users.css'
 import Header from './Header'
+import Footer from './footer'
 
 function Users () {
 
@@ -29,7 +30,7 @@ function Users () {
                     </div>
                 </section>
 
-
+            <Footer/>
             </div>
 
         )

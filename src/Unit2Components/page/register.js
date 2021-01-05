@@ -3,7 +3,7 @@ import {useHistory} from 'react-router-dom'
 import * as yup from 'yup';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './cssPage/register.css'
-
+import Footer from './footer'
 
 function Register(props) {
 
@@ -132,7 +132,7 @@ function Register(props) {
                         <small id="emailHelp" className="form-text ">We'll never share your email with anyone else.</small>
                     </div>
                     </form>
-                    
+                <Footer/> 
                 </div>
             </div>        
             

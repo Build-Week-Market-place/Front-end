@@ -3,7 +3,7 @@ import * as yup from 'yup'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './cssPage/ItemEdit.css'
 import Header from './Header'
-
+import Footer from './footer'
 
 function Contact (props) {
         
@@ -113,6 +113,7 @@ function Contact (props) {
                     
                     
                 </div>
+                <Footer/>
             </div>        
             </div>
             

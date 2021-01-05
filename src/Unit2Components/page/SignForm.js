@@ -3,6 +3,7 @@ import * as yup from 'yup'
 import {Link} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './cssPage/signform.css'
+import Footer from './footer'
 
 function SignForm (props){
     
@@ -101,7 +102,7 @@ function SignForm (props){
                         <Link className='link' to='/register' >No account yet? Register here</Link>
                     </div>
                     </form>
-                    
+                <Footer/>  
                 </div>
             </div>        
         

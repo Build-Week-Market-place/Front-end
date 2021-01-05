@@ -1,46 +1,35 @@
 import React, {useState, useEffect} from 'react'
-import {useHistory} from 'react-router-dom'
 import * as yup from 'yup';
+import axios from "axios"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './cssPage/register.css'
 import Footer from './footer'
 
 function Register(props) {
-
-        const history = useHistory()
+        const url = "https://african-marketplace-back-end.herokuapp.com/auth/register"
         
         const [form, setForm] = useState({
-            name: '',
-		    email: '',
-		    password: '',
+            password: '',
 		    username: '',
-		    location: '',
+		    department: '',
 		    terms: true,
         })
         const [errors, setErrors]= useState({
-            name: '',
-		    email: '',
 		    password: '',
 		    username: '',
-		    location: '',
+		    department: '',
 		    terms: false,
         })
         const [buttonDisable, setButtonDisable] = useState(true)
 
         const registerSchema = yup.object().shape({
             username: yup.string().required('Username is required'),
-            email: yup
-                        .string()
-                        .email('Enter a valid Email')
-                        .required('Must include an Email'),
             password: yup
                         .string()
                         .min(8,'Password must be 8 letter long minimum')
                         .max(16,'Password must be 16 letter long maximum'),
-            location: yup
-                        .string()
-                        .required('Please Include Location'),
-
+            department: yup
+                        .string().required("Department is required"),
             terms: yup.boolean().oneOf([true], 'Please agree to Terms and Conditions'),
             
         })
@@ -63,17 +52,22 @@ function Register(props) {
                         })
                     })
         }
-        const formSubmit = async (event) => {
+        const formSubmit = (event) => {
             event.preventDefault()
-            
-            await props.register({
-                email: form.email,
-                name: form.name,
-                username: form.username,
-                password: form.password,
-                location: form.location,
-            });
-            history.push('/home');
+            const user = {       
+                "username": form.username,
+                "password": form.password,
+                "department": form.department
+            }
+            console.log(user)
+            axios.post(url, user, {"Headers":{"Content-type": "application/json"},})
+            .then (res =>{
+                    console.log(res)
+                    // window.location="/"
+            })
+            .catch(err=>{
+                console.log(err)
+            })
         }
         const inputChange = (event) => {
             event.persist();
@@ -93,7 +87,6 @@ function Register(props) {
                 setButtonDisable(!isValid)
             })
         }, [form, registerSchema])
-        
 
         return(
 
@@ -111,16 +104,16 @@ function Register(props) {
                             <input type="text" id='username' name="username" onChange={inputChange} className="form-control"  placeholder="Username"/>
                         </div>
                         <div className="form-group">
-                            <label ><p className='error'>{errors.email}</p></label>
-                            <input type="email"  name="email" id="email" onChange={inputChange} className="form-control" placeholder="Enter email"/>
-                        </div>
-                        <div className="form-group">
                             <label ><p className='error'>{errors.password}</p></label>
                             <input type="password" name="password" id="password" onChange={inputChange} className="form-control"  placeholder="Password"/>
                         </div>
                         <div className="form-group">
-                            <label ><p className='error'>{errors.location}</p></label>
-                            <input type="text" name='location' id='location' onChange={inputChange} className="form-control"  placeholder="Location"/>
+                            <label ><p className='error'>{errors.department}</p></label>
+                            <select type="text" name='department' id='department' onChange={inputChange} className="form-control">
+                                <option value="">--Select department--</option>
+                                <option value="buyer">Buyer</option>
+                                <option value="seller">Seller</option> 
+                            </select>
                         </div>
                         <div className="form-check">
                             <p className='error'>{errors.terms}</p>
@@ -129,7 +122,7 @@ function Register(props) {
                         </div>
                         <button type="submit" disabled={buttonDisable} className="btn submitBtn">Submit</button>
                         <div className='registerBtn'>
-                        <small id="emailHelp" className="form-text ">We'll never share your email with anyone else.</small>
+                        <small id="emailHelp" className="form-text ">We'll never share your information.</small>
                     </div>
                     </form>
                 <Footer/> 

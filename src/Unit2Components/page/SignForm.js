@@ -4,14 +4,16 @@ import {Link} from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './cssPage/signform.css'
 import Footer from './footer'
+import axios from 'axios'
 
 function SignForm (props){
     
-        
+    const url = "https://african-marketplace-back-end.herokuapp.com/auth/login"
 
         const [form, setForm] = useState({
             username: '',
             password: '',
+            department:'',
         });
 
         const [buttonDisable, setButtonDisable] = useState(true);
@@ -19,6 +21,7 @@ function SignForm (props){
         const [errors, setErrors] = useState({
             username: '',
             password: '',
+            department:'',
         });
 
         const validateChange = (e) => {
@@ -41,12 +44,23 @@ function SignForm (props){
                 });
         };
 
-        const formSubmit = (e) => {
-            e.preventDefault();
-            ;
-        };
-
-        
+        const formSubmit = (event) => {
+            event.preventDefault()
+            const user = {       
+                "username": form.username,
+                "password": form.password,
+                "department": form.department
+            }
+            // console.log(user)
+            axios.post(url, user, {"Headers":{"Content-type": "application/json"},})
+            .then (res =>{
+                    console.log(res)
+                    // window.location="/home"
+            })
+            .catch(err=>{
+                console.log(err)
+            })
+        }
 
         const inputChange = (e) => {
             e.persist();
@@ -67,6 +81,8 @@ function SignForm (props){
             password: yup
                 .string()
                 .required('Password is required'),
+            department: yup
+                .string().required("Department is required"),
         });
 
         useEffect(() => {
@@ -96,8 +112,15 @@ function SignForm (props){
                             <p className='error'>{errors.password}</p>
                             <input type="text" id='password' name='password' className="form-control"  onChange={inputChange}  placeholder="Password"/>
                         </div>
-                        
-                        <Link className='link' to='/home'><button type="submit" disabled={buttonDisable} className="btn submitBtn">Log in</button></Link>
+                        <div className="form-group">
+                            <label ><p className='error'>{errors.department}</p></label>
+                            <select type="text" name='department' id='department' onChange={inputChange} className="form-control">
+                                <option value="">--Select department--</option>
+                                <option value="buyer">Buyer</option>
+                                <option value="seller">Seller</option> 
+                            </select>
+                        </div>                        
+                        <button type="submit" disabled={buttonDisable} className="btn submitBtn">Log in</button>
                         <div className='registerBtn'>
                         <Link className='link' to='/register' >No account yet? Register here</Link>
                     </div>

@@ -12,7 +12,7 @@ function Register(props) {
             password: '',
 		    username: '',
 		    department: '',
-		    terms: true,
+		    terms: false,
         })
         const [errors, setErrors]= useState({
 		    password: '',

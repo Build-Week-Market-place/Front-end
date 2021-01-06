@@ -2,7 +2,9 @@ import React, {useEffect, useState} from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './cssPage/items.css'
 import Header from './Header'
+import Footer from './footer'
 import { axiosWithAuth } from '../../Unit3Components/axiosWithAuth'
+
 
 function  Items(){
     const testItems=[{name:"test2", price:"$242.10", description:"testdesc2", location:"somewhere2"},
@@ -40,12 +42,11 @@ function  Items(){
                         </div>
                             
                     </div>  
-                </div>
 
+                 <Footer/>
+            </div>
+            </div>
 
-
-          
-                   
         
             )
     }

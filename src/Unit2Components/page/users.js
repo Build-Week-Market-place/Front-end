@@ -1,6 +1,7 @@
 import React, {useEffect,useState} from 'react'
 import './cssPage/users.css'
 import Header from './Header'
+import Footer from './footer'
 
 function Users () {
     const testUsers=[{name:"Billy",email:"billy@bill.com", id:5, location:"place", password:"353532523523#%#@%@#%", username:'TOM'},
@@ -57,7 +58,7 @@ function Users () {
                     </div>
                 </section>
 
-
+            <Footer/>
             </div>
 
         )

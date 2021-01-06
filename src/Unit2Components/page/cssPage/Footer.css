@@ -1,0 +1,20 @@
+.footerDiv{
+display: flex;
+justify-content: space-between;
+position:absolute;
+bottom:0;
+width:100%;
+padding:1% 3% 0 3%; 
+background-color:rgba(0, 0, 0, 0.411);
+font-size: 0.8rem;
+}
+.logOutLink{
+color:rgba(255, 255, 255, 0.623);
+font-size:1.1rem;
+
+}
+.logOutLink:hover{
+    color:#fbb829;
+    transform: scale(1.2);
+    text-decoration: none;
+}

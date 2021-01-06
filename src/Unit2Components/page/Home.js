@@ -1,6 +1,7 @@
 import React from 'react'
 import './cssPage/Home.css'
 import Header from './Header'
+import Footer from './footer'
 
 function Home () {
     
@@ -16,7 +17,7 @@ function Home () {
                 </div>
 
 
-
+            <Footer/>
             </div>
 
         )

@@ -118,7 +118,7 @@ function SignForm(props) {
             <label>Password</label>
             <p className="error">{errors.password}</p>
             <input
-              type="text"
+              type="password"
               id="password"
               name="password"
               className="form-control"

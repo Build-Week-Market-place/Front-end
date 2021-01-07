@@ -14,6 +14,7 @@ function ItemEdit (props) {
         price: '',
         description: '',
         location: '',
+        URL:''
     };
     
         const [form, setForm] = useState(emptyItem);
@@ -23,6 +24,7 @@ function ItemEdit (props) {
             price: '',
             description: '',
             location: '',
+            URL:'',
         });
         const [submitComplete, setSubmitComplete]=useState(false)
     
@@ -47,6 +49,8 @@ function ItemEdit (props) {
                     .required()
                     .label('Description')
                     .min(10, 'must be at least 10 characters.'),
+                URL:yup
+                    .string()
                 })
             const validateChange = (e) => {
                 yup
@@ -91,6 +95,7 @@ function ItemEdit (props) {
                         .then(resp=>{
                             console.log(resp)
                             setSubmitComplete(true)
+                            setForm(emptyItem)
                         })
                         .catch(err=>{
                             console.log(err)
@@ -135,6 +140,11 @@ function ItemEdit (props) {
                             <label>Price</label>
                             <p className='error'>{errors.price}</p>
                             <input type="text" name='price' id='price' className="form-control" onChange={inputChange} placeholder="Price"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Image URL (optional):</label>
+                            <p className='error'>{errors.URL}</p>
+                            <input type="text" name='URL' id='URL' className="form-control" onChange={inputChange} placeholder="Image URL"/>
                         </div>
                         <div className={(submitComplete===true)? "displaySuccess":"hideSuccess"}>
                             Success! Your product has been added to the marketplace.

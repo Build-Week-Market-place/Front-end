@@ -16,7 +16,7 @@ function Header(){
             axiosWithAuth()
             .get("/users")
             .then((resp)=>{
-                console.log("users resp",resp)
+                
                 
                  setCurrentUser (resp.data.filter((item) => {
                     if (item.username === username) {
@@ -31,7 +31,7 @@ function Header(){
             
         
         }, [])
-        console.log(currentUser)
+        
 
 useEffect(() => {
     if (currentUser!==null){

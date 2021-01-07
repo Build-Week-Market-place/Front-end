@@ -37,10 +37,46 @@
     font-size:2rem;
 }
 
+.imgContainer{
+    min-height:8rem;
+    min-width:12rem;
+}
+
+.itemImg{
+    min-height:8rem;
+    min-width:12rem;
+    border: solid #fbb829 2px;
+    
+    
+}
+
+.hideBorder{
+    min-height:8rem;
+    
+    border:none;
+}
+
+
+
+img{
+
+    max-width:12rem;
+    min-height:6rem;
+    height:auto;
+    width:auto;
+    margin-left:auto;
+    margin-right:auto;
+    margin-bottom:1.5rem;
+    
+}
+
+
+
+
 
 @media(max-width:888px){
     .itemCard{
-        width:26vw;
+        width:55vw;
     }
 }
 @media(max-width:642px){

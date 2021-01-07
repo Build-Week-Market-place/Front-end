@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './cssPage/ItemEdit.css'
 import Header from './Header'
 import Footer from './footer'
+import { axiosWithAuth } from '../../Unit3Components/axiosWithAuth'
+import axios from "axios"
 
 function ItemEdit (props) {
         
@@ -22,6 +24,7 @@ function ItemEdit (props) {
             description: '',
             location: '',
         });
+        const [submitComplete, setSubmitComplete]=useState(false)
     
         const formSchema = yup.object().shape({
                 name: yup
@@ -66,7 +69,6 @@ function ItemEdit (props) {
             };    
             const inputChange = (e) => {
                     e.persist();
-                    console.log('input changed!', e.target.value);
                     const newFormData = {
                         ...form,
                         [e.target.name]:
@@ -76,10 +78,27 @@ function ItemEdit (props) {
                     validateChange(e);
                     setForm(newFormData);
             };
+
+
             const formSubmit = (e) => {
                     e.preventDefault();
+                    console.log(form)
+                    axios
+                        .post('https://african-marketplace-back-end.herokuapp.com/items/additem',
+                         form,
+                        {headers:{authorization:localStorage.getItem('token')}
+                    })
+                        .then(resp=>{
+                            console.log(resp)
+                            setSubmitComplete(true)
+                        })
+                        .catch(err=>{
+                            console.log(err)
+                        })
                     
             };
+
+
             useEffect(() => {
                     formSchema.isValid(form).then((isValid) => {
                         setButtonDisable(!isValid);
@@ -117,8 +136,10 @@ function ItemEdit (props) {
                             <p className='error'>{errors.price}</p>
                             <input type="text" name='price' id='price' className="form-control" onChange={inputChange} placeholder="Price"/>
                         </div>
-                    
-                        <button type="submit" disabled={buttonDisable} className="btn submitBtn">Add Item</button>
+                        <div className={(submitComplete===true)? "displaySuccess":"hideSuccess"}>
+                            Success! Your product has been added to the marketplace.
+                        </div>
+                        <button type="submit" disabled={(submitComplete===true) ? true:buttonDisable} className="btn submitBtn">Add Item</button>
                         
                     </form>
                     

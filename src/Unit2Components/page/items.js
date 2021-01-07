@@ -13,8 +13,21 @@ function  Items(){
    
 
     useEffect(()=>{
-        //API call goes here
-    })
+        axiosWithAuth()
+        .get("/items")
+        .then((resp)=>{
+            console.log(resp)
+            setItems(resp.data)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }, [])
+
+    
+
+    
+    
 
 
 
@@ -33,8 +46,8 @@ function  Items(){
                                return <div className='itemCard bar' key={item.price}>
                                    <h1>{item.name}</h1>
                                    <p>{item.description}</p>
-                                   <span className='locationSpan'>{item.location}</span>
-                                   <span className='priceSpan'>{item.price}</span>
+                                   {(item.location===null) ? null: <span className='locationSpan'> Location: {item.location}</span> }
+                                   <span className='priceSpan'>${item.price}</span>
 
                                 </div>
                                 
@@ -45,7 +58,7 @@ function  Items(){
 
                  <Footer/>
             </div>
-            </div>
+            
 
         
             )

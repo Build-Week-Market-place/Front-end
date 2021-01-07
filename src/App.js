@@ -1,4 +1,4 @@
-import React, {useContext} from 'react'
+import React, {useState,useContext, createContext} from 'react'
 import './App.css';
 import {useTransition, animated} from 'react-spring'
 import {Route, Switch} from 'react-router-dom'
@@ -11,7 +11,15 @@ import Items from './Unit2Components/page/items'
 import ItemEdit from './Unit2Components/page/itemEdit'
 import Contact from './Unit2Components/page/Contact'
 
+
+export const BuyerSellerContext=createContext();
+
 function App() {
+
+
+
+
+
 
   const {location} = useContext(__RouterContext)
   const transitions = useTransition(location, location => location.pathname, {
@@ -20,12 +28,13 @@ function App() {
     leave:{opacity: 0.3, transform:'translate(-50%,0)'}
   })
   return (
+    
     <div className="App">
       {transitions.map(({ item, props, key})=>(
         <animated.div key={key} style={props}>
           <Switch location={item}>
             <Route exact path='/'>
-              <SignForm/>
+            <SignForm/>
             </Route>
             <Route exact path='/register'>
               <Register/>
@@ -50,6 +59,7 @@ function App() {
       ))}
     
     </div>
+    
   );
 }
 

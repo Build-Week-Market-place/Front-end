@@ -43,7 +43,7 @@ function SignForm(props) {
       });
   };
 
-  const formSubmit = (event) => {
+  async function formSubmit(event){
     event.preventDefault();
     const user = {
       username: form.username,
@@ -51,50 +51,21 @@ function SignForm(props) {
       department: form.department,
     };
     // console.log(user)
-    axios
+    await axios
       .post(url, user, { Headers: { "Content-type": "application/json" } })
       .then((res) => {
+        localStorage.setItem("username",user.username)
         console.log(".post resp", res);
-        localStorage.setItem("token", res.data.token);
+        return localStorage.setItem("token", res.data.token);
       })
-      .then(checkForBuyer(user.username))
+      
       .catch((err) => {
         console.log(err);
       });
+      window.location.href="/home";
   };
 
-async function checkForBuyer(username) {
-    await axiosWithAuth()
-      .get("/users")
-      .then((resp) => {
-        console.log("userData", userData);
-        let currentUser = resp.data.filter((item) => {
-          if (item.username === username) {
-            return item;
-          }
-        });
-        console.log("current", currentUser);
-        if (currentUser[0].department === "buyer") {
-            localStorage.setItem("buyer",true);
-        } else {
-            localStorage.setItem("buyer",false);
-        }
-        
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-     window.location.href="/home";
-  }
-  useEffect(() => {
-    function checkForLocal() {
-      const item = localStorage.getItem("buyer")
   
-      if (item) {
-        window.location.href="/home";
-      }
-    }
-},[])
 
   
   const inputChange = (e) => {

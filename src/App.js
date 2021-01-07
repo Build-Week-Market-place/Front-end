@@ -10,11 +10,14 @@ import Users from './Unit2Components/page/users'
 import Items from './Unit2Components/page/items'
 import ItemEdit from './Unit2Components/page/itemEdit'
 import Contact from './Unit2Components/page/Contact'
+import PrivateRoute from './Unit3Components/PrivateRoute'
 
 
 export const BuyerSellerContext=createContext();
 
 function App() {
+
+  const [userName, setUserName]=useState("")
 
 
 
@@ -34,26 +37,21 @@ function App() {
         <animated.div key={key} style={props}>
           <Switch location={item}>
             <Route exact path='/'>
-            <SignForm/>
+            <SignForm setUserName={setUserName}/>
             </Route>
             <Route exact path='/register'>
               <Register/>
             </Route>
-            <Route exact path='/home'> 
-              <Home/>
-            </Route> 
-            <Route exact path='/users'>
-              <Users/>
-            </Route>
-            <Route exact path='/items'>
-              <Items/>
-            </Route>
-            <Route exact path='/upload'>
-              <ItemEdit/>
-            </Route>
-            <Route exact path='/contact'>
-              <Contact/>
-            </Route>
+            <PrivateRoute exact path='/home' component={Home}/> 
+              
+            <PrivateRoute exact path='/users' component={Users} />
+              
+            <PrivateRoute exact path='/items' component={Items}/>
+              
+            <PrivateRoute exact path='/upload' component={ItemEdit}/>
+              
+            <PrivateRoute exact path='/contact' component={Contact}/>
+              
           </Switch>
         </animated.div>
       ))}

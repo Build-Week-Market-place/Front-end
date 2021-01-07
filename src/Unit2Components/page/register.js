@@ -62,8 +62,8 @@ function Register(props) {
             console.log(user)
             axios.post(url, user, {"Headers":{"Content-type": "application/json"},})
             .then (res =>{
-                    console.log(res)
-                    // window.location="/"
+                    console.log("register res", res)
+                window.location="/"
             })
             .catch(err=>{
                 console.log(err)

@@ -7,14 +7,26 @@ import { axiosWithAuth } from '../../Unit3Components/axiosWithAuth'
 
 
 function  Items(){
-    const testItems=[{name:"test2", price:"$242.10", description:"testdesc2", location:"somewhere2"},
-    {name:"test", price:"$24.02", description:"testdesc", location:"somewhere"}]
-    const [items, setItems]= useState(testItems)
+    
+    const [items, setItems]= useState([])
    
 
     useEffect(()=>{
-        //API call goes here
-    })
+        axiosWithAuth()
+        .get("/items")
+        .then((resp)=>{
+            console.log("items resp",resp)
+            setItems(resp.data)
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }, [])
+
+   
+
+    
+    
 
 
 
@@ -30,11 +42,12 @@ function  Items(){
                         
                         
                            {items.map(item=>{
-                               return <div className='itemCard bar' key={item.price}>
+                               return <div className='itemCard bar' key={item.id}>
                                    <h1>{item.name}</h1>
+                                   <div className={item.URL ? 'imgContainer':"itemImgHide"}><img className={item.URL ? "itemImg":"hideBorder"} src={item.URL}/></div>
                                    <p>{item.description}</p>
-                                   <span className='locationSpan'>{item.location}</span>
-                                   <span className='priceSpan'>{item.price}</span>
+                                   {(item.location===null) ? null: <span className='locationSpan'> Location: {item.location}</span> }
+                                   <span className='priceSpan'>${item.price}</span>
 
                                 </div>
                                 
@@ -45,7 +58,7 @@ function  Items(){
 
                  <Footer/>
             </div>
-            </div>
+            
 
         
             )

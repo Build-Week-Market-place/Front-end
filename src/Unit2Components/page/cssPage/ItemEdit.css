@@ -1,4 +1,9 @@
-
+.displaySuccess{
+    display:default;
+}
+.hideSuccess{
+    display: none;
+}
 
 
 @media(max-width:888px){
